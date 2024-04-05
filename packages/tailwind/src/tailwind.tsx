@@ -8,7 +8,6 @@ import { minifyCss } from "./utils/css/minify-css";
 export type TailwindConfig = Omit<TailwindOriginalConfig, "content">;
 
 export interface TailwindProps {
-  children: React.ReactNode;
   config?: TailwindConfig;
 }
 
@@ -18,7 +17,7 @@ interface EmailElementProps {
   style?: React.CSSProperties;
 }
 
-export const Tailwind: React.FC<TailwindProps> = ({ children, config }) => {
+export const Tailwind: React.FC<React.PropsWithChildren<TailwindProps>> = ({ children, config }) => {
   const { stylePerClassMap, nonInlinableClasses, sanitizedMediaQueries } =
     useTailwindStyles(children, config ?? {});
 
